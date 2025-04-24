@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
-import com.google.android.material.card.MaterialCardView;
+import androidx.cardview.widget.CardView;
 import com.zegocloud.uikit.R;
 import com.zegocloud.uikit.components.audiovideo.ZegoAudioVideoView;
 import com.zegocloud.uikit.components.audiovideocontainer.ZegoAudioVideoContainer.LayoutManager;
@@ -44,7 +44,7 @@ class PipLayoutManager extends LayoutManager {
     }
 
     private void switchChildView(ZegoAudioVideoView clickView) {
-        MaterialCardView clickViewParent = (MaterialCardView) clickView.getParent();
+        CardView clickViewParent = (CardView) clickView.getParent();
         clickView.setOnClickListener(null);
         clickView.setClickable(false);
         int indexOfClickView = audioVideoUserList.indexOf(new ZegoUIKitUser(clickView.getUserID()));
@@ -85,7 +85,7 @@ class PipLayoutManager extends LayoutManager {
         }
 
         for (int i = 0; i < smallViewParent.getChildCount(); i++) {
-            MaterialCardView child = (MaterialCardView) smallViewParent.getChildAt(i);
+            CardView child = (CardView) smallViewParent.getChildAt(i);
             ZegoAudioVideoView audioVideoView = (ZegoAudioVideoView) child.getChildAt(0);
             audioVideoView.setAudioViewBackgroundColor(mConfig.smallViewBackgroundColor);
             audioVideoView.setAudioViewBackground(mConfig.smallViewBackgroundImage);
@@ -215,7 +215,7 @@ class PipLayoutManager extends LayoutManager {
 
         if (removeOnly) {
             for (int i = 0; i < smallViewParent.getChildCount(); i++) {
-                MaterialCardView child = (MaterialCardView) smallViewParent.getChildAt(i);
+                CardView child = (CardView) smallViewParent.getChildAt(i);
                 ZegoAudioVideoView audioVideoView = (ZegoAudioVideoView) child.getChildAt(0);
                 if (!newList.contains(new ZegoUIKitUser(audioVideoView.getUserID()))) {
                     audioVideoView.setUserID("");
@@ -278,7 +278,7 @@ class PipLayoutManager extends LayoutManager {
         fullViewParent.removeAllViews();
         if (useCache) {
             for (int i = 0; i < smallViewParent.getChildCount(); i++) {
-                MaterialCardView child = (MaterialCardView) smallViewParent.getChildAt(i);
+                CardView child = (CardView) smallViewParent.getChildAt(i);
                 ZegoAudioVideoView audioVideoView = (ZegoAudioVideoView) child.getChildAt(0);
                 audioVideoView.setOnClickListener(null);
                 audioVideoView.setClickable(false);
@@ -321,8 +321,8 @@ class PipLayoutManager extends LayoutManager {
         }
     }
 
-    private MaterialCardView wrapWithMaterialView(View view) {
-        MaterialCardView cardView = new MaterialCardView(container.getContext());
+    private CardView wrapWithMaterialView(View view) {
+        CardView cardView = new CardView(container.getContext());
         DisplayMetrics displayMetrics = container.getContext().getResources().getDisplayMetrics();
         cardView.setRadius(Utils.dp2px(8f, displayMetrics));
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(-1, -1);
@@ -339,7 +339,7 @@ class PipLayoutManager extends LayoutManager {
             child.setAudioVideoConfig(mAudioVideoConfig);
         }
         for (int i = 0; i < smallViewParent.getChildCount(); i++) {
-            MaterialCardView child = (MaterialCardView) smallViewParent.getChildAt(i);
+            CardView child = (CardView) smallViewParent.getChildAt(i);
             ZegoAudioVideoView audioVideoView = (ZegoAudioVideoView) child.getChildAt(0);
             audioVideoView.setAudioVideoConfig(mAudioVideoConfig);
         }
